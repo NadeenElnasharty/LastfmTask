@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lastfm.Backend", "Lastfm.Backend\Lastfm.Backend.csproj", "{E2121635-008F-4B85-9E08-CEB21D2EBC75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lastfm.Frontend", "Lastfm.Frontend\Lastfm.Frontend.csproj", "{01BE0AE6-3F4A-4141-A8A8-2E7C8731C2E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2121635-008F-4B85-9E08-CEB21D2EBC75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2121635-008F-4B85-9E08-CEB21D2EBC75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2121635-008F-4B85-9E08-CEB21D2EBC75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2121635-008F-4B85-9E08-CEB21D2EBC75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01BE0AE6-3F4A-4141-A8A8-2E7C8731C2E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01BE0AE6-3F4A-4141-A8A8-2E7C8731C2E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01BE0AE6-3F4A-4141-A8A8-2E7C8731C2E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01BE0AE6-3F4A-4141-A8A8-2E7C8731C2E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

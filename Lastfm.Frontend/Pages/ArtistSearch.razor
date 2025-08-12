@@ -1,0 +1,103 @@
+﻿@page "/artist-search"
+@inject HttpClient Http
+
+<h3 class="mb-4">Artist Search</h3>
+
+<div class="input-group mb-3">
+    <input @bind="artistName" @bind:event="oninput" type="text" class="form-control" placeholder="Enter artist name..." />
+    <button class="btn btn-primary" @onclick="SearchArtist" disabled="@string.IsNullOrWhiteSpace(artistName)">
+        Search
+    </button>
+</div>
+
+@if (isLoading)
+{
+    <div class="alert alert-info">Loading...</div>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+else if (artistInfo != null)
+{
+    <div class="card shadow-sm mb-4">
+        <img src="@artistInfo.Image" class="card-img-top" alt="@artistInfo.Name" />
+        <div class="card-body">
+            <h5 class="card-title">@artistInfo.Name</h5>
+            <p class="card-text">@((MarkupString)artistInfo.Bio)</p>
+        </div>
+    </div>
+
+    @if (artistInfo.Tags?.Count > 0)
+    {
+        <h5>Tags</h5>
+        <ul class="list-group mb-4">
+            @foreach (var tag in artistInfo.Tags)
+            {
+                <li class="list-group-item">@tag</li>
+            }
+        </ul>
+    }
+
+    @if (artistInfo.Albums?.Count > 0)
+    {
+        <h5>Albums</h5>
+        <div class="row">
+            @foreach (var album in artistInfo.Albums)
+            {
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100">
+                        <img src="@album.Image" class="card-img-top" alt="@album.Name" />
+                        <div class="card-body">
+                            <h6 class="card-title">@album.Name</h6>
+                            <a href="@album.Url" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
+
+@code {
+    private string artistName;
+    private ArtistDto artistInfo;
+    private bool isLoading;
+    private string errorMessage;
+
+    private async Task SearchArtist()
+    {
+        isLoading = true;
+        errorMessage = null;
+        artistInfo = null;
+
+        try
+        {
+            artistInfo = await Http.GetFromJsonAsync<ArtistDto>($"http://localhost:5012/api/artist/{artistName}");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    public class ArtistDto
+    {
+        public string Name { get; set; }
+        public string Bio { get; set; }
+        public string Image { get; set; }
+        public List<string> Tags { get; set; }
+        public List<AlbumDto> Albums { get; set; }
+    }
+
+    public class AlbumDto
+    {
+        public string Name { get; set; }
+        public string Url { get; set; }
+        public string Image { get; set; }
+    }
+}

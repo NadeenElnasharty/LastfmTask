@@ -1,0 +1,6 @@
+@Lastfm.Backend_HostAddress = http://localhost:5140
+
+GET {{Lastfm.Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
